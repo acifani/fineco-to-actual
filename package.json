@@ -1,0 +1,14 @@
+{
+  "name": "fineco-to-actual",
+  "version": "1.0.0",
+  "description": "Import Fineco card movements to Actual",
+  "main": "fineco-to-actual.js",
+  "type": "module",
+  "scripts": {},
+  "keywords": [],
+  "author": "Alessandro Cifani <alessandro.cifani@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actual-app/api": "^6.2.1"
+  }
+}
