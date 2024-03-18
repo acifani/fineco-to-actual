@@ -6,13 +6,13 @@ settings:
 
 dependencies:
   '@actual-app/api':
-    specifier: ^6.5.0
-    version: 6.5.0
+    specifier: ^6.6.0
+    version: 6.6.0
 
 packages:
 
-  /@actual-app/api@6.5.0:
-    resolution: {integrity: sha512-F5f7h0jeeplq5vtP/zvf5flKVER5CoArtvm19KEKG/8S3d0/T1xwd5WsYYTCbnjCss1o2vHppCd29E0R2ihrXA==}
+  /@actual-app/api@6.6.0:
+    resolution: {integrity: sha512-PR+mnau9OZSPltHSTuUBT8T+sxpb3IHKIBm5wfc/xxsl/4VPP95Z0obNNrSak/hWLqe+YMyILcHfhz2KiiGxDg==}
     engines: {node: '>=18.12.0'}
     dependencies:
       better-sqlite3: 9.4.3
@@ -30,7 +30,7 @@ packages:
     requiresBuild: true
     dependencies:
       bindings: 1.5.0
-      prebuild-install: 7.1.1
+      prebuild-install: 7.1.2
     dev: false
 
   /bindings@1.5.0:
@@ -185,8 +185,8 @@ packages:
       wrappy: 1.0.2
     dev: false
 
-  /prebuild-install@7.1.1:
-    resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
+  /prebuild-install@7.1.2:
+    resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
