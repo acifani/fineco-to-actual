@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@actual-app/api':
-        specifier: ^6.9.0
-        version: 6.9.0
+        specifier: ^6.10.0
+        version: 6.10.0
 
 packages:
 
-  '@actual-app/api@6.9.0':
-    resolution: {integrity: sha512-/2uwe3c+gvLDpn59io+dKLC9dDvrZyT36DEWRGxe5BR7zvgm2rFbyhxyud+q4S9OODs8W7Oc5DVaoLYWilZBJA==}
+  '@actual-app/api@6.10.0':
+    resolution: {integrity: sha512-Ai86X8iWompivfhSsgyLnnSAN+SIfVQzMHSlaFR3we9QzFGUMRsg++kQgjiE16WUc0hF969SyFtKjcuRLbIvPQ==}
     engines: {node: '>=18.12.0'}
 
   '@actual-app/crdt@2.1.0':
@@ -110,8 +110,8 @@ packages:
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
-  node-abi@3.65.0:
-    resolution: {integrity: sha512-ThjYBfoDNr08AWx6hGaRbfPwxKV9kVzAzOzlLKbk2CuqXE2xnCh+cbAGnwM3t8Lq4v9rUB7VfondlkBckcJrVA==}
+  node-abi@3.68.0:
+    resolution: {integrity: sha512-7vbj10trelExNjFSBm5kTvZXXa7pZyKWx9RCKIyqe6I9Ev3IzGpQoqBP3a+cOdxY+pWj6VkP28n/2wWysBHD/A==}
     engines: {node: '>=10'}
 
   node-domexception@1.0.0:
@@ -130,8 +130,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  pump@3.0.0:
-    resolution: {integrity: sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww==}
+  pump@3.0.2:
+    resolution: {integrity: sha512-tUPXtzlGM8FE3P0ZL6DVs/3P58k9nk8/jZeQCurTJylQA8qFYzHFfhBJkuqyE0FifOsQ0uKWekiZ5g8wtr28cw==}
 
   rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
@@ -188,7 +188,7 @@ packages:
 
 snapshots:
 
-  '@actual-app/api@6.9.0':
+  '@actual-app/api@6.10.0':
     dependencies:
       '@actual-app/crdt': 2.1.0
       better-sqlite3: 9.6.0
@@ -277,7 +277,7 @@ snapshots:
 
   napi-build-utils@1.0.2: {}
 
-  node-abi@3.65.0:
+  node-abi@3.68.0:
     dependencies:
       semver: 7.6.3
 
@@ -301,14 +301,14 @@ snapshots:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.65.0
-      pump: 3.0.0
+      node-abi: 3.68.0
+      pump: 3.0.2
       rc: 1.2.8
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
 
-  pump@3.0.0:
+  pump@3.0.2:
     dependencies:
       end-of-stream: 1.4.4
       once: 1.4.0
@@ -348,7 +348,7 @@ snapshots:
     dependencies:
       chownr: 1.1.4
       mkdirp-classic: 0.5.3
-      pump: 3.0.0
+      pump: 3.0.2
       tar-stream: 2.2.0
 
   tar-stream@2.2.0:
