@@ -13,6 +13,8 @@ async function login(userId, password) {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
+        'origin': 'https://it.finecobank.com',
+        'referer': 'https://it.finecobank.com',
       },
       body: JSON.stringify({ userId, password }),
     },

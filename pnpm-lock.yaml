@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@actual-app/api':
-        specifier: ^24.10.1
-        version: 24.10.1
+        specifier: ^24.11.0
+        version: 24.11.0
 
 packages:
 
-  '@actual-app/api@24.10.1':
-    resolution: {integrity: sha512-lY9shDWq+Vy3YfC9P/31BqPklRc+R3ONAn27wr1JUcddObkIH0MtkFC77DXvoVeu/zDP6acNj/YUwVEhH0ZZww==}
+  '@actual-app/api@24.11.0':
+    resolution: {integrity: sha512-z46vxeg2yF2OY0C1vry558A+FO3fbFik0Wh5PwKxODVNDM3omFB/pEikB1AAmZRfoTNxInis//flUvD+DUzHDA==}
     engines: {node: '>=18.12.0'}
 
   '@actual-app/crdt@2.1.0':
@@ -110,8 +110,8 @@ packages:
   napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
 
-  node-abi@3.68.0:
-    resolution: {integrity: sha512-7vbj10trelExNjFSBm5kTvZXXa7pZyKWx9RCKIyqe6I9Ev3IzGpQoqBP3a+cOdxY+pWj6VkP28n/2wWysBHD/A==}
+  node-abi@3.71.0:
+    resolution: {integrity: sha512-SZ40vRiy/+wRTf21hxkkEjPJZpARzUMVcJoQse2EF8qkUWbbO2z7vd5oA/H6bVH6SZQ5STGcu0KRDS7biNRfxw==}
     engines: {node: '>=10'}
 
   node-domexception@1.0.0:
@@ -188,7 +188,7 @@ packages:
 
 snapshots:
 
-  '@actual-app/api@24.10.1':
+  '@actual-app/api@24.11.0':
     dependencies:
       '@actual-app/crdt': 2.1.0
       better-sqlite3: 9.6.0
@@ -277,7 +277,7 @@ snapshots:
 
   napi-build-utils@1.0.2: {}
 
-  node-abi@3.68.0:
+  node-abi@3.71.0:
     dependencies:
       semver: 7.6.3
 
@@ -301,7 +301,7 @@ snapshots:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.68.0
+      node-abi: 3.71.0
       pump: 3.0.2
       rc: 1.2.8
       simple-get: 4.0.1
