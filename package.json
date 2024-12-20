@@ -9,6 +9,6 @@
   "author": "Alessandro Cifani <alessandro.cifani@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@actual-app/api": "^24.11.0"
+    "@actual-app/api": "^24.12.0"
   }
 }
