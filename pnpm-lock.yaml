@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@actual-app/api':
-        specifier: ^25.3.0
-        version: 25.3.0
+        specifier: ^25.4.0
+        version: 25.4.0
 
 packages:
 
-  '@actual-app/api@25.3.0':
-    resolution: {integrity: sha512-P16QUOQz0YYX2yzPW0fHuypEaFFr3u7te0wBwmb7PQvAbMHNUBVdjI3On0Kpx8bj+g/agJpOeXnUXlJdj9wT/A==}
+  '@actual-app/api@25.4.0':
+    resolution: {integrity: sha512-Amxn18rKfUDrLyebQ040NITAbymB2k+REd/XP1lnh99VYxakqLY6MHAH8WNLLfgIJETBZAf5mKYYCBOv05t2gg==}
     engines: {node: '>=18.12.0'}
 
   '@actual-app/crdt@2.1.0':
@@ -24,8 +24,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  better-sqlite3@11.8.1:
-    resolution: {integrity: sha512-9BxNaBkblMjhJW8sMRZxnxVTRgbRmssZW0Oxc1MPBTfiR+WW21e2Mk4qu8CzrcZb1LwPCnFsfDEzq+SNcBU8eg==}
+  better-sqlite3@11.9.1:
+    resolution: {integrity: sha512-Ba0KR+Fzxh2jDRhdg6TSH0SJGzb8C0aBY4hR8w8madIdIzzC6Y1+kx5qR6eS1Z+Gy20h6ZU28aeyg0z1VIrShQ==}
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
@@ -188,10 +188,10 @@ packages:
 
 snapshots:
 
-  '@actual-app/api@25.3.0':
+  '@actual-app/api@25.4.0':
     dependencies:
       '@actual-app/crdt': 2.1.0
-      better-sqlite3: 11.8.1
+      better-sqlite3: 11.9.1
       compare-versions: 6.1.1
       node-fetch: 3.3.2
       uuid: 9.0.1
@@ -204,7 +204,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  better-sqlite3@11.8.1:
+  better-sqlite3@11.9.1:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.3
