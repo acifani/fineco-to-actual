@@ -9,7 +9,7 @@
   "author": "Alessandro Cifani <alessandro.cifani@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@actual-app/api": "^25.7.1"
+    "@actual-app/api": "^25.8.0"
   },
   "packageManager": "pnpm@10.2.0",
   "pnpm": {
