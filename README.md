@@ -1,18 +1,15 @@
 # fineco-to-actual
 
-Import Fineco card movements to [Actual](https://actualbudget.org/).
+Import Fineco account movements to [Actual](https://actualbudget.org/).
 
-This script will download the card movements from your Fineco account
-and create corresponding transactions in a given Actual account.
+This script will download the account movements from your Fineco account
+and create corresponding transactions in the configured Actual accounts.
 
 As it uses the [import function](https://actualbudget.org/docs/transactions/importing#avoiding-duplicate-transactions),
 it does a good job of deduplicating imported transactions,
 so you should be able to run it as often as you want.
 
-Why only the card movements? Because the other movements can be synced
-through the [native GoCardless integration in Actual](https://actualbudget.org/docs/advanced/bank-sync/).
-
-> ⚠️ This script is not battle tested and **it will break**! ⚠️
+You can choose to sync card movements, account movements, or both.
 
 ## Running
 

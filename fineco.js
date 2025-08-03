@@ -13,8 +13,8 @@ async function login(userId, password) {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        'origin': 'https://it.finecobank.com',
-        'referer': 'https://it.finecobank.com',
+        origin: 'https://it.finecobank.com',
+        referer: 'https://it.finecobank.com',
       },
       body: JSON.stringify({ userId, password }),
     },
@@ -67,9 +67,16 @@ function toISO(date) {
 }
 
 function filterCardMovements(movements) {
-  const card = movements.filter((m) => m.tipoMovimento === 'MOVIMENTO_CARTE');
-  console.log(
-    `Found ${movements.length} movements, of which ${card.length} are from card`,
+  const cardMovements = movements.filter(
+    (m) => m.tipoMovimento === 'MOVIMENTO_CARTE',
   );
-  return card;
+  const accountMovements = movements.filter(
+    (m) => m.tipoMovimento === 'MOVIMENTO_CONTO',
+  );
+
+  console.log(
+    `Found ${movements.length} movements, of which ${cardMovements.length} are from card`,
+  );
+
+  return { cardMovements, accountMovements };
 }
