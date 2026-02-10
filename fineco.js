@@ -2,12 +2,19 @@ export async function getFinecoMovements() {
   return login(process.env.FINECO_USER_ID, process.env.FINECO_PASSWORD)
     .then(extractSessionID)
     .then(getMovements)
-    .then(filterCardMovements);
+    .then(filterCardMovements)
+    .catch(logErrorAndExit);
 }
 
 async function login(userId, password) {
+  if (!userId || !password) {
+    throw new Error(
+      'Fineco user ID and password must be set in environment variables',
+    );
+  }
+
   return fetch(
-    'https://public-api.finecobank.com/v1/public/authentications/web/login?sca=true',
+    'https://public-api.finecobank.com/v1/public/authentications/web/login',
     {
       method: 'POST',
       headers: {
@@ -21,7 +28,12 @@ async function login(userId, password) {
   );
 }
 
-function extractSessionID(res) {
+async function extractSessionID(res) {
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Login failed with status ${res.status}, body: ${body}`);
+  }
+
   const cookies = res.headers.getSetCookie();
   return cookies
     .find((c) => c.startsWith('gsessionid'))
@@ -30,6 +42,10 @@ function extractSessionID(res) {
 }
 
 async function getMovements(gsessionid) {
+  if (!gsessionid) {
+    throw new Error('No session ID found, cannot get movements');
+  }
+
   const now = new Date();
   const dateFrom =
     process.env.FINECO_DATE_FROM ||
@@ -59,7 +75,12 @@ async function getMovements(gsessionid) {
     },
   )
     .then((res) => res.json())
-    .then((m) => m.movimenti);
+    .then((m) => {
+      if (!m.movimenti) {
+        throw new Error('No movements found in response: ' + JSON.stringify(m));
+      }
+      return m.movimenti;
+    });
 }
 
 function toISO(date) {
@@ -79,4 +100,9 @@ function filterCardMovements(movements) {
   );
 
   return { cardMovements, accountMovements };
+}
+
+function logErrorAndExit(err) {
+  console.error('Error fetching Fineco movements', err);
+  process.exit(1);
 }
