@@ -13,6 +13,8 @@ You can choose to sync card movements, account movements, or both.
 
 ## Running
 
+Requires Node.js 26 or later.
+
 ```shell
 git clone https://github.com/acifani/fineco-to-actual.git
 pnpm install
@@ -22,7 +24,7 @@ Some environment variables are required, you can find them in `.env.sample`.
 You can create a .env file or export them to your shell manually.
 
 ```shell
-# Use native nodejs .env loader (requires v20.6.0+)
+# Use the native Node.js .env loader
 node --env-file=.env ./fineco-to-actual.js
 
 # or export them on your shell however you want
