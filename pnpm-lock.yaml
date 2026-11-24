@@ -186,23 +186,23 @@ importers:
   .:
     dependencies:
       '@actual-app/api':
-        specifier: ^26.10.0
-        version: 26.10.0
+        specifier: ^26.11.0
+        version: 26.11.0
 
 packages:
 
-  '@actual-app/api@26.10.0':
-    resolution: {integrity: sha512-yVpl37aXJ6kikV5wljRgedji5NQ0lQNhCUfoBOpDvxrxVfKpPuUdAbq94k4GvF53kf4r1E4h7yjonDoxdVcumA==}
+  '@actual-app/api@26.11.0':
+    resolution: {integrity: sha512-pDBwnbbZfEW0lh0NuiwsLLHSzgclHzRTUywN2P9DKnczNidqUIRoK39fRc4czerCToohuAj/tP+S344irhhKEA==}
     engines: {node: '>=22'}
 
-  '@actual-app/core@26.10.0':
-    resolution: {integrity: sha512-uhBeqN+xs+cKAtChfW78TXp7/cQFtwLy+etikPAU0v4Q8k/N/x/OkKGJCnXwnQBNzVffVeLpR+TO21LWeFujTA==}
+  '@actual-app/core@26.11.0':
+    resolution: {integrity: sha512-4+Io7GJJ/TTSCF5nTUKqYy3BqYV8W0eR159d3A0Q1mxpsrBjSDlokiGruoDeuI6V8lDyoccL2+RhH9CLlR6owQ==}
 
-  '@actual-app/crdt@3.1.3':
-    resolution: {integrity: sha512-3BfVYYasM7uAhIOTQIzMFpIAB6H+0CQhlQMvN+nLHbgWvEVZzpwynoFBSq7pXLX0xAlG3TFnjlBp47URNkeDwQ==}
+  '@actual-app/crdt@3.1.4':
+    resolution: {integrity: sha512-YSNj7kpTHCtJsxsQEks+IfyQOLYBXb4Xjs1Wm8KhSa4DOAcxySrEoFSZS+8h9v46SwMK9wtPfor43pvbaVfrEw==}
 
-  '@bufbuild/protobuf@2.16.0':
-    resolution: {integrity: sha512-FWa0sPlqYGJgpTs6OxBRcL/AW4JT0OIO+W1ajerluoTVh8CV0B7XM1qsNCRgnkSCkRCgOICKHRQlY17jrsm0+Q==}
+  '@bufbuild/protobuf@2.17.0':
+    resolution: {integrity: sha512-hcPkSz6D7MiTU/5VBBhK+kxaYDoOdQ6yJRFJ3kS8Nydp+VZXfg1vrpABKPNod8bXMufsVCmiUJVIKFzCzta4uw==}
 
   '@jlongster/sql.js@1.6.7':
     resolution: {integrity: sha512-4hf0kZr5WPoirdR5hUSfQ9O0JpH/qlW1CaR2wZ6zGrDz1xjSdTPuR8AW/oXzIHnJvZSEvlcIE+dfXJZwh/Lxfw==}
@@ -218,8 +218,8 @@ packages:
   absurd-sql@0.0.54:
     resolution: {integrity: sha512-p+SWTtpRs2t3sXMLxkTyLRZkEzxTv/zG/Bl93wibegLZTGAHGk68SJMWslRWHBGh63ka/ePGTXGHh1117++45Q==}
 
-  better-sqlite3@13.0.3:
-    resolution: {integrity: sha512-RbOBxmLBG8uvFUc15X9+9SFemKcQ0WBuISBVkpuiaUB2qblC8UWlHEjdWVoZ8AdhSwmoEgsiXKfopX0CQxaACQ==}
+  better-sqlite3@13.2.0:
+    resolution: {integrity: sha512-Z8Q/9x/uNyKxA1v4FNodyItRVRw1TeKBrmj32JhxhR0ceNcBY+wMobt/Bv7M7TzwPAXjnZRtNaEsATnUZSKWZQ==}
     engines: {node: '>=22'}
 
   chevrotain@6.5.0:
@@ -237,8 +237,8 @@ packages:
   date-fns@4.4.0:
     resolution: {integrity: sha512-+1UMbeh68lH1SegH83CGWwpb6OHHbpSgr3+s5Eww5M4CAgswBpoWS0AjTOfEJ33HiYKz1hdj/KTFprzXHmq/6w==}
 
-  es-toolkit@1.52.0:
-    resolution: {integrity: sha512-XTNEJQh1tY1ZJVcf6ayP/2n4ZPyaHlW2FWs7xvw5ddPuhUVjLD3olQVQS7kf58JbAB48iL0uL/jerTrjtV3lDA==}
+  es-toolkit@1.53.2:
+    resolution: {integrity: sha512-iUqZ+NlwH4jUgRmXZUxFBsV/9762TQEa1O4IXLFBmDEjVHScBytKuseX23I0+v9ShZ5MYxEx6WKNzm6IPnex8g==}
 
   fflate@0.8.3:
     resolution: {integrity: sha512-tbZNuJrLwGUp3zshBtdy4W+ORxZuIh8a5ilyIEQDC5rY1f3U20JMry0Ll3WBzU58EZKsEuJFXhb5gwv8CsPvgA==}
@@ -310,25 +310,25 @@ packages:
 
 snapshots:
 
-  '@actual-app/api@26.10.0':
+  '@actual-app/api@26.11.0':
     dependencies:
-      '@actual-app/core': 26.10.0
-      '@actual-app/crdt': 3.1.3
-      better-sqlite3: 13.0.3
+      '@actual-app/core': 26.11.0
+      '@actual-app/crdt': 3.1.4
+      better-sqlite3: 13.2.0
       compare-versions: 6.1.1
       uuid: 14.0.3
 
-  '@actual-app/core@26.10.0':
+  '@actual-app/core@26.11.0':
     dependencies:
       '@jlongster/sql.js': 1.6.7
       '@rschedule/core': 1.5.0
       '@rschedule/standard-date-adapter': 1.5.0(@rschedule/core@1.5.0)
       absurd-sql: 0.0.54
-      better-sqlite3: 13.0.3
+      better-sqlite3: 13.2.0
       csv-parse: 7.0.3
       csv-stringify: 6.9.0
       date-fns: 4.4.0
-      es-toolkit: 1.52.0
+      es-toolkit: 1.53.2
       fflate: 0.8.3
       handlebars: 4.7.10
       hyperformula: 3.5.0
@@ -337,13 +337,13 @@ snapshots:
       uuid: 14.0.3
       xml2js: 0.6.2
 
-  '@actual-app/crdt@3.1.3':
+  '@actual-app/crdt@3.1.4':
     dependencies:
-      '@bufbuild/protobuf': 2.16.0
+      '@bufbuild/protobuf': 2.17.0
       murmurhash: 2.0.1
       uuid: 14.0.3
 
-  '@bufbuild/protobuf@2.16.0': {}
+  '@bufbuild/protobuf@2.17.0': {}
 
   '@jlongster/sql.js@1.6.7': {}
 
@@ -357,7 +357,7 @@ snapshots:
     dependencies:
       safari-14-idb-fix: 1.0.6
 
-  better-sqlite3@13.0.3:
+  better-sqlite3@13.2.0:
     dependencies:
       node-addon-api: 8.9.2
 
@@ -373,7 +373,7 @@ snapshots:
 
   date-fns@4.4.0: {}
 
-  es-toolkit@1.52.0: {}
+  es-toolkit@1.53.2: {}
 
   fflate@0.8.3: {}
 
