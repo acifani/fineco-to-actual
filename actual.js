@@ -13,19 +13,22 @@ export const requiredEnv = [
 
 export async function addToActual({ cardMovements, accountMovements }) {
   console.log();
+  return initActual()
+    .then(() => mapMovementsToTransactions(cardMovements))
+    .then(createCardTransactions)
+    .then(() => mapMovementsToTransactions(accountMovements))
+    .then(createBankTransactions)
+    .finally(api.shutdown);
+}
+
+async function initActual() {
   await api.init({
     dataDir: './data',
     serverURL: process.env.ACTUAL_SERVER_URL,
     password: process.env.ACTUAL_PASSWORD,
   });
 
-  try {
-    await api.downloadBudget(process.env.ACTUAL_BUDGET_SYNC_ID);
-    await createCardTransactions(mapMovementsToTransactions(cardMovements));
-    await createBankTransactions(mapMovementsToTransactions(accountMovements));
-  } finally {
-    await api.shutdown();
-  }
+  await api.downloadBudget(process.env.ACTUAL_BUDGET_SYNC_ID);
 }
 
 function mapMovementsToTransactions(movements) {
