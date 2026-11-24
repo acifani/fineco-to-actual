@@ -22,8 +22,7 @@ async function initActual(serverURL, password) {
 
 function mapMovementsToTransactions(movements) {
   return movements.map((m) => ({
-    // Convert decimals to integer amount
-    amount: Math.trunc(m.importo * 100),
+    amount: api.utils.amountToInteger(m.importo),
     imported_payee: m.descrizione,
     payee_name: m.descrizione,
     notes: m.descrizione,
