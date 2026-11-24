@@ -2,22 +2,19 @@ import api from '@actual-app/api';
 
 export async function addToActual({ cardMovements, accountMovements }) {
   console.log();
-  return initActual(process.env.ACTUAL_SERVER_URL, process.env.ACTUAL_PASSWORD)
-    .then(() => mapMovementsToTransactions(cardMovements))
-    .then(createCardTransactions)
-    .then(() => mapMovementsToTransactions(accountMovements))
-    .then(createBankTransactions)
-    .then(shutdown);
-}
-
-async function initActual(serverURL, password) {
   await api.init({
     dataDir: './data',
-    serverURL,
-    password,
+    serverURL: process.env.ACTUAL_SERVER_URL,
+    password: process.env.ACTUAL_PASSWORD,
   });
 
-  await api.downloadBudget(process.env.ACTUAL_BUDGET_SYNC_ID);
+  try {
+    await api.downloadBudget(process.env.ACTUAL_BUDGET_SYNC_ID);
+    await createCardTransactions(mapMovementsToTransactions(cardMovements));
+    await createBankTransactions(mapMovementsToTransactions(accountMovements));
+  } finally {
+    await api.shutdown();
+  }
 }
 
 function mapMovementsToTransactions(movements) {
@@ -58,8 +55,4 @@ async function createBankTransactions(transactions) {
     process.env.ACTUAL_BANK_ACCOUNT_ID,
     transactions,
   );
-}
-
-async function shutdown() {
-  return api.shutdown();
 }
