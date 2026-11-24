@@ -46,11 +46,11 @@ async function getMovements(gsessionid) {
     throw new Error('No session ID found, cannot get movements');
   }
 
-  const now = new Date();
+  const now = Date.now();
   const dateFrom =
     process.env.FINECO_DATE_FROM ||
-    toISO(new Date(now.setDate(now.getDate() - 30)));
-  const dateTo = process.env.FINECO_DATE_TO || toISO(new Date());
+    toFinecoDate(new Date(now - 30 * 24 * 60 * 60 * 1000));
+  const dateTo = process.env.FINECO_DATE_TO || toFinecoDate(new Date(now));
 
   console.log(`Import transaction from ${dateFrom} to ${dateTo}`);
 
@@ -83,8 +83,18 @@ async function getMovements(gsessionid) {
     });
 }
 
-function toISO(date) {
-  return date.toISOString().split('T')[0];
+const romeDateFormat = new Intl.DateTimeFormat('en', {
+  timeZone: 'Europe/Rome',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
+
+function toFinecoDate(date) {
+  const { year, month, day } = Object.fromEntries(
+    romeDateFormat.formatToParts(date).map((p) => [p.type, p.value]),
+  );
+  return `${year}-${month}-${day}`;
 }
 
 function filterCardMovements(movements) {
