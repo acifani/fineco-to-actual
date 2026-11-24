@@ -2,6 +2,7 @@ export const requiredEnv = ['FINECO_USER_ID', 'FINECO_PASSWORD'];
 
 export async function getFinecoMovements() {
   return login(process.env.FINECO_USER_ID, process.env.FINECO_PASSWORD)
+    .then(ensureOk)
     .then(extractSessionID)
     .then(getMovements)
     .then(filterCardMovements)
@@ -24,12 +25,15 @@ async function login(userId, password) {
   );
 }
 
-async function extractSessionID(res) {
+async function ensureOk(res) {
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Login failed with status ${res.status}, body: ${body}`);
+    throw new Error(`${res.url} failed with status ${res.status}: ${body}`);
   }
+  return res;
+}
 
+async function extractSessionID(res) {
   const cookies = res.headers.getSetCookie();
   return cookies
     .find((c) => c.startsWith('gsessionid'))
@@ -70,15 +74,8 @@ async function getMovements(gsessionid) {
       }),
     },
   )
-    .then(async (res) => {
-      if (!res.ok) {
-        const body = await res.text();
-        throw new Error(
-          `Fetching movements failed with status ${res.status}, body: ${body}`,
-        );
-      }
-      return res.json();
-    })
+    .then(ensureOk)
+    .then((res) => res.json())
     .then((m) => {
       if (!m.movimenti) {
         throw new Error('No movements found in response: ' + JSON.stringify(m));
