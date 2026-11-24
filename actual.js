@@ -1,5 +1,16 @@
 import api from '@actual-app/api';
 
+const syncCard = process.env.SYNC_FINECO_CARD_ACCOUNT === 'true';
+const syncBank = process.env.SYNC_FINECO_BANK_ACCOUNT === 'true';
+
+export const requiredEnv = [
+  'ACTUAL_SERVER_URL',
+  'ACTUAL_PASSWORD',
+  'ACTUAL_BUDGET_SYNC_ID',
+  ...(syncCard ? ['ACTUAL_CARD_ACCOUNT_ID'] : []),
+  ...(syncBank ? ['ACTUAL_BANK_ACCOUNT_ID'] : []),
+];
+
 export async function addToActual({ cardMovements, accountMovements }) {
   console.log();
   await api.init({
@@ -28,7 +39,7 @@ function mapMovementsToTransactions(movements) {
 }
 
 async function createCardTransactions(transactions) {
-  if (process.env.SYNC_FINECO_CARD_ACCOUNT !== 'true') {
+  if (!syncCard) {
     console.log(
       "Skipping card account as SYNC_FINECO_CARD_ACCOUNT is not set to 'true'",
     );
@@ -43,7 +54,7 @@ async function createCardTransactions(transactions) {
 }
 
 async function createBankTransactions(transactions) {
-  if (process.env.SYNC_FINECO_BANK_ACCOUNT !== 'true') {
+  if (!syncBank) {
     console.log(
       "Skipping bank account as SYNC_FINECO_BANK_ACCOUNT is not set to 'true'",
     );

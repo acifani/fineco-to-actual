@@ -1,3 +1,5 @@
+export const requiredEnv = ['FINECO_USER_ID', 'FINECO_PASSWORD'];
+
 export async function getFinecoMovements() {
   return login(process.env.FINECO_USER_ID, process.env.FINECO_PASSWORD)
     .then(extractSessionID)
@@ -7,12 +9,6 @@ export async function getFinecoMovements() {
 }
 
 async function login(userId, password) {
-  if (!userId || !password) {
-    throw new Error(
-      'Fineco user ID and password must be set in environment variables',
-    );
-  }
-
   return fetch(
     'https://public-api.finecobank.com/v1/public/authentications/web/login',
     {
