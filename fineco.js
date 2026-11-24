@@ -74,7 +74,15 @@ async function getMovements(gsessionid) {
       }),
     },
   )
-    .then((res) => res.json())
+    .then(async (res) => {
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(
+          `Fetching movements failed with status ${res.status}, body: ${body}`,
+        );
+      }
+      return res.json();
+    })
     .then((m) => {
       if (!m.movimenti) {
         throw new Error('No movements found in response: ' + JSON.stringify(m));
