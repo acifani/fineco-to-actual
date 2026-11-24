@@ -1,20 +1,31 @@
 import api from '@actual-app/api';
 
+const syncCard = process.env.SYNC_FINECO_CARD_ACCOUNT === 'true';
+const syncBank = process.env.SYNC_FINECO_BANK_ACCOUNT === 'true';
+
+export const requiredEnv = [
+  'ACTUAL_SERVER_URL',
+  'ACTUAL_PASSWORD',
+  'ACTUAL_BUDGET_SYNC_ID',
+  ...(syncCard ? ['ACTUAL_CARD_ACCOUNT_ID'] : []),
+  ...(syncBank ? ['ACTUAL_BANK_ACCOUNT_ID'] : []),
+];
+
 export async function addToActual({ cardMovements, accountMovements }) {
   console.log();
-  return initActual(process.env.ACTUAL_SERVER_URL, process.env.ACTUAL_PASSWORD)
+  return initActual()
     .then(() => mapMovementsToTransactions(cardMovements))
     .then(createCardTransactions)
     .then(() => mapMovementsToTransactions(accountMovements))
     .then(createBankTransactions)
-    .then(shutdown);
+    .finally(api.shutdown);
 }
 
-async function initActual(serverURL, password) {
+async function initActual() {
   await api.init({
     dataDir: './data',
-    serverURL,
-    password,
+    serverURL: process.env.ACTUAL_SERVER_URL,
+    password: process.env.ACTUAL_PASSWORD,
   });
 
   await api.downloadBudget(process.env.ACTUAL_BUDGET_SYNC_ID);
@@ -22,8 +33,7 @@ async function initActual(serverURL, password) {
 
 function mapMovementsToTransactions(movements) {
   return movements.map((m) => ({
-    // Convert decimals to integer amount
-    amount: Math.trunc(m.importo * 100),
+    amount: api.utils.amountToInteger(m.importo),
     imported_payee: m.descrizione,
     payee_name: m.descrizione,
     notes: m.descrizione,
@@ -32,7 +42,7 @@ function mapMovementsToTransactions(movements) {
 }
 
 async function createCardTransactions(transactions) {
-  if (process.env.SYNC_FINECO_CARD_ACCOUNT !== 'true') {
+  if (!syncCard) {
     console.log(
       "Skipping card account as SYNC_FINECO_CARD_ACCOUNT is not set to 'true'",
     );
@@ -47,7 +57,7 @@ async function createCardTransactions(transactions) {
 }
 
 async function createBankTransactions(transactions) {
-  if (process.env.SYNC_FINECO_BANK_ACCOUNT !== 'true') {
+  if (!syncBank) {
     console.log(
       "Skipping bank account as SYNC_FINECO_BANK_ACCOUNT is not set to 'true'",
     );
@@ -59,8 +69,4 @@ async function createBankTransactions(transactions) {
     process.env.ACTUAL_BANK_ACCOUNT_ID,
     transactions,
   );
-}
-
-async function shutdown() {
-  return api.shutdown();
 }

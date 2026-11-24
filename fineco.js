@@ -1,5 +1,8 @@
+export const requiredEnv = ['FINECO_USER_ID', 'FINECO_PASSWORD'];
+
 export async function getFinecoMovements() {
   return login(process.env.FINECO_USER_ID, process.env.FINECO_PASSWORD)
+    .then(ensureOk)
     .then(extractSessionID)
     .then(getMovements)
     .then(filterCardMovements)
@@ -7,12 +10,6 @@ export async function getFinecoMovements() {
 }
 
 async function login(userId, password) {
-  if (!userId || !password) {
-    throw new Error(
-      'Fineco user ID and password must be set in environment variables',
-    );
-  }
-
   return fetch(
     'https://public-api.finecobank.com/v1/public/authentications/web/login',
     {
@@ -28,12 +25,15 @@ async function login(userId, password) {
   );
 }
 
-async function extractSessionID(res) {
+async function ensureOk(res) {
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Login failed with status ${res.status}, body: ${body}`);
+    throw new Error(`${res.url} failed with status ${res.status}: ${body}`);
   }
+  return res;
+}
 
+async function extractSessionID(res) {
   const cookies = res.headers.getSetCookie();
   return cookies
     .find((c) => c.startsWith('gsessionid'))
@@ -46,11 +46,10 @@ async function getMovements(gsessionid) {
     throw new Error('No session ID found, cannot get movements');
   }
 
-  const now = new Date();
+  const today = Temporal.Now.plainDateISO('Europe/Rome');
   const dateFrom =
-    process.env.FINECO_DATE_FROM ||
-    toISO(new Date(now.setDate(now.getDate() - 30)));
-  const dateTo = process.env.FINECO_DATE_TO || toISO(new Date());
+    process.env.FINECO_DATE_FROM || today.subtract({ days: 30 }).toString();
+  const dateTo = process.env.FINECO_DATE_TO || today.toString();
 
   console.log(`Import transaction from ${dateFrom} to ${dateTo}`);
 
@@ -74,6 +73,7 @@ async function getMovements(gsessionid) {
       }),
     },
   )
+    .then(ensureOk)
     .then((res) => res.json())
     .then((m) => {
       if (!m.movimenti) {
@@ -81,10 +81,6 @@ async function getMovements(gsessionid) {
       }
       return m.movimenti;
     });
-}
-
-function toISO(date) {
-  return date.toISOString().split('T')[0];
 }
 
 function filterCardMovements(movements) {

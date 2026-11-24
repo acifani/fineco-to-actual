@@ -8,6 +8,9 @@
   "keywords": [],
   "author": "Alessandro Cifani <alessandro.cifani@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=26"
+  },
   "dependencies": {
     "@actual-app/api": "^26.11.0"
   },
